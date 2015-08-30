@@ -7,7 +7,7 @@ _Sometimes we need to deal with GIFs in Cocoa. This can really be a pain in the 
 
 ## How it works
 ![NSGIF](https://dl.dropboxusercontent.com/s/nsh0s1shh9fbqpu/NSGIF-HIW.png?dl=0)
-That's it really. If you want to go into some technical details though, here they are:
+That's it really. Although iOS defaults to .MOV for recordings you can also use .AVI and .MP4. If you want to go into some technical details though, here they are:
 
 ## Add to your project
  
