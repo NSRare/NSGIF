@@ -36,6 +36,13 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 	NSLog(@"Finished generating GIF: %@", GifURL);
 }];
 ```
+The library is lightweight and very straight forward. Once you grab the URL of your video, pass it to NSGIF alongside the frame count, delay time and loop count. 
+Let me explain those for you: 
+```
+	frameCount - 
+    delayTime - 
+    loopCount - 
+```
 
 ## License
 Usage is provided under the [MIT License](http://http//opensource.org/licenses/mit-license.php). See LICENSE for the full details.
