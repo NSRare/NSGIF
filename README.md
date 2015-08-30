@@ -39,9 +39,9 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 The library is lightweight and very straight forward. Once you grab the URL of your video, pass it to NSGIF alongside the frame count, delay time and loop count. 
 Let me explain those for you: 
 ```
-	frameCount - 
-    delayTime - 
-    loopCount - 
+	frameCount - is the amount of frames per second. You can keep this at about 30-35 depending on the resolution of your video. The higher the resolution the lower to frame count!
+    delayTime -  is the amount of time for each frame in the GIF.
+    loopCount - is the number of times the GIF will repeat. Defaults to 0, which means repeat infinitely.
 ```
 
 ## License
