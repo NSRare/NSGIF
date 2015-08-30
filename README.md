@@ -31,9 +31,11 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 
 ## Practical use
 
-		[NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 		 completion:^(NSURL *GifURL) {
-            NSLog(@"Finished generating GIF: %@", GifURL);
-        }];
+```objective-c
+[NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 		 completion:^(NSURL *GifURL) {
+	NSLog(@"Finished generating GIF: %@", GifURL);
+}];
+```
 
 ## License
 Usage is provided under the [MIT License](http://http//opensource.org/licenses/mit-license.php). See LICENSE for the full details.
