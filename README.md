@@ -32,7 +32,7 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 ## Practical use
 
 ```objective-c
-[NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 		 completion:^(NSURL *GifURL) {
+[NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 completion:^(NSURL *GifURL) {
 	NSLog(@"Finished generating GIF: %@", GifURL);
 }];
 ```
