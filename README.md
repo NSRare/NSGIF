@@ -51,6 +51,14 @@ Check out the demo project for a quick example of how NSGIF works. After you cap
 
 ![NSGIF](https://dl.dropboxusercontent.com/s/p02c6l7rzk6mf6m/NSGIF-HT.gif?dl=0)
 
+## Todo
+- [ ] Add MacOS Demo
+- [ ] Auto-calculate the frame count
+- [ ] Show preview of GIF in iOS App
+- [ ] Create GIFs based on enums for quality type 
+
+Pull requests are more than welcomed!
+
 ## License
 Usage is provided under the [MIT License](http://http//opensource.org/licenses/mit-license.php). See LICENSE for the full details.
 
