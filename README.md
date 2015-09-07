@@ -46,9 +46,15 @@ NSLog(@"Finished generating GIF: %@", GifURL);
 The library is lightweight and very straight forward. Once you grab the URL of your video, pass it to NSGIF alongside the frame count, delay time and loop count. 
 Let me explain those for you: 
 ```
+<<<<<<< HEAD
 frameCount - is the amount of frames of the GIF. You can adjust this depending on the resolution of your video. The higher the resolution the lower to frame count!
 delayTime  -  is the amount of time for each frame in the GIF.
 loopCount  - is the number of times the GIF will repeat. Defaults to 0, which means repeat infinitely.
+=======
+	frameCount - is the amount of frames of the GIF. You can adjust this depending on the resolution of your video. The higher the resolution the lower to frame count!
+    delayTime  -  is the amount of time for each frame in the GIF.
+    loopCount  - is the number of times the GIF will repeat. Defaults to 0, which means repeat infinitely.
+>>>>>>> c02f391a86d21536a334e64d7d9f5d208be1d7a2
 ```
 I recommend you to play with those values and find the best ones for your video.
 
@@ -59,10 +65,17 @@ Check out the demo project for a quick example of how NSGIF works. After you cap
 ![NSGIF](https://dl.dropboxusercontent.com/s/p02c6l7rzk6mf6m/NSGIF-HT.gif?dl=0)
 
 ## Todo
+<<<<<<< HEAD
 - [X] Add MacOS Demo
 - [X] Auto-calculate the frame count
 - [X] Show preview of GIF in iOS App
 - [X] Create GIFs based on enums for quality type 
+=======
+- [ ] Add MacOS Demo
+- [ ] Auto-calculate the frame count
+- [ ] Show preview of GIF in iOS App
+- [ ] Create GIFs based on enums for quality type 
+>>>>>>> c02f391a86d21536a334e64d7d9f5d208be1d7a2
 
 Pull requests are more than welcomed!
 
