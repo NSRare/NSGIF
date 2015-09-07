@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NSGIF"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "iOS Library for converting your videos into beautiful animated GIFs."
   s.homepage     = "https://github.com/sebyddd/NSGIF"
   s.screenshots  = "https://dl.dropboxusercontent.com/s/0rq3fr0dtpvwd4h/NSGIF-header.png?dl=0"
@@ -25,7 +25,9 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "Sebastian Dobrincu" => "sebyddd@gmail.com" }
   s.platform     = :ios
+  s.platform     = :osx
   s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.9'
   s.source       = { :git => 'https://github.com/sebyddd/NSGIF.git', :tag => "#{s.version}" }
   s.source_files  = "NSGIF/*.{h,m}"
 
