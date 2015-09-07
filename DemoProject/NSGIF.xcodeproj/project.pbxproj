@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A2069F11B9D0AEE00E886E8 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9A2069F01B9D0AEE00E886E8 /* video.mp4 */; };
+		9A2069F21B9D0AEE00E886E8 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9A2069F01B9D0AEE00E886E8 /* video.mp4 */; };
+		9A2069F61B9D138500E886E8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2069F51B9D138500E886E8 /* WebKit.framework */; };
 		9A7C0A3A1B9262A800556C5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C0A391B9262A800556C5A /* main.m */; };
 		9A7C0A3D1B9262A800556C5A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C0A3C1B9262A800556C5A /* AppDelegate.m */; };
 		9A7C0A401B9262A800556C5A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C0A3F1B9262A800556C5A /* ViewController.m */; };
@@ -14,7 +17,14 @@
 		9A7C0A451B9262A800556C5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A7C0A441B9262A800556C5A /* Images.xcassets */; };
 		9A7C0A481B9262A800556C5A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A7C0A461B9262A800556C5A /* LaunchScreen.xib */; };
 		9A7C0A541B9262A800556C5A /* NSGIFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C0A531B9262A800556C5A /* NSGIFTests.m */; };
-		9A7C0A5F1B9262DE00556C5A /* NSGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C0A5E1B9262DE00556C5A /* NSGIF.m */; };
+		9AF8884D1B985F5B005E0F14 /* NSGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8884C1B985F5B005E0F14 /* NSGIF.m */; };
+		9AF9B7EB1B9C769C00016854 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9B7EA1B9C769C00016854 /* AppDelegate.m */; };
+		9AF9B7ED1B9C769C00016854 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9B7EC1B9C769C00016854 /* main.m */; };
+		9AF9B7F01B9C769C00016854 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9B7EF1B9C769C00016854 /* ViewController.m */; };
+		9AF9B7F21B9C769C00016854 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AF9B7F11B9C769C00016854 /* Images.xcassets */; };
+		9AF9B7F51B9C769C00016854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF9B7F31B9C769C00016854 /* Main.storyboard */; };
+		9AF9B8011B9C769C00016854 /* NSGIF_OSXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9B8001B9C769C00016854 /* NSGIF_OSXTests.m */; };
+		9AF9B80A1B9C82C100016854 /* NSGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8884C1B985F5B005E0F14 /* NSGIF.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,9 +35,18 @@
 			remoteGlobalIDString = 9A7C0A331B9262A800556C5A;
 			remoteInfo = NSGIF;
 		};
+		9AF9B7FB1B9C769C00016854 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A7C0A2C1B9262A800556C5A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AF9B7E41B9C769C00016854;
+			remoteInfo = "NSGIF-OSX";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A2069F01B9D0AEE00E886E8 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		9A2069F51B9D138500E886E8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		9A7C0A341B9262A800556C5A /* NSGIF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSGIF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7C0A381B9262A800556C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A7C0A391B9262A800556C5A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,8 +60,20 @@
 		9A7C0A4D1B9262A800556C5A /* NSGIFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSGIFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7C0A521B9262A800556C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A7C0A531B9262A800556C5A /* NSGIFTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGIFTests.m; sourceTree = "<group>"; };
-		9A7C0A5D1B9262DE00556C5A /* NSGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSGIF.h; sourceTree = "<group>"; };
-		9A7C0A5E1B9262DE00556C5A /* NSGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSGIF.m; sourceTree = "<group>"; };
+		9AF8884B1B985F5B005E0F14 /* NSGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSGIF.h; path = ../NSGIF/NSGIF.h; sourceTree = "<group>"; };
+		9AF8884C1B985F5B005E0F14 /* NSGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSGIF.m; path = ../NSGIF/NSGIF.m; sourceTree = "<group>"; };
+		9AF9B7E51B9C769C00016854 /* NSGIF-OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NSGIF-OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF9B7E81B9C769C00016854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AF9B7E91B9C769C00016854 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9AF9B7EA1B9C769C00016854 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9AF9B7EC1B9C769C00016854 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9AF9B7EE1B9C769C00016854 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9AF9B7EF1B9C769C00016854 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9AF9B7F11B9C769C00016854 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9AF9B7F41B9C769C00016854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9AF9B7FA1B9C769C00016854 /* NSGIF-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSGIF-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF9B7FF1B9C769C00016854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AF9B8001B9C769C00016854 /* NSGIF_OSXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSGIF_OSXTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,16 +91,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AF9B7E21B9C769C00016854 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2069F61B9D138500E886E8 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AF9B7F71B9C769C00016854 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		9A7C0A2B1B9262A800556C5A = {
 			isa = PBXGroup;
 			children = (
-				9A7C0A5D1B9262DE00556C5A /* NSGIF.h */,
-				9A7C0A5E1B9262DE00556C5A /* NSGIF.m */,
+				9AF8884B1B985F5B005E0F14 /* NSGIF.h */,
+				9AF8884C1B985F5B005E0F14 /* NSGIF.m */,
+				9A2069F01B9D0AEE00E886E8 /* video.mp4 */,
 				9A7C0A361B9262A800556C5A /* NSGIF */,
 				9A7C0A501B9262A800556C5A /* NSGIFTests */,
+				9AF9B7E61B9C769C00016854 /* NSGIF-OSX */,
+				9AF9B7FD1B9C769C00016854 /* NSGIF-OSXTests */,
 				9A7C0A351B9262A800556C5A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +128,8 @@
 			children = (
 				9A7C0A341B9262A800556C5A /* NSGIF.app */,
 				9A7C0A4D1B9262A800556C5A /* NSGIFTests.xctest */,
+				9AF9B7E51B9C769C00016854 /* NSGIF-OSX.app */,
+				9AF9B7FA1B9C769C00016854 /* NSGIF-OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +175,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9AF9B7E61B9C769C00016854 /* NSGIF-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				9AF9B7E91B9C769C00016854 /* AppDelegate.h */,
+				9AF9B7EA1B9C769C00016854 /* AppDelegate.m */,
+				9AF9B7EE1B9C769C00016854 /* ViewController.h */,
+				9AF9B7EF1B9C769C00016854 /* ViewController.m */,
+				9AF9B7F11B9C769C00016854 /* Images.xcassets */,
+				9AF9B7F31B9C769C00016854 /* Main.storyboard */,
+				9AF9B7E71B9C769C00016854 /* Supporting Files */,
+			);
+			path = "NSGIF-OSX";
+			sourceTree = "<group>";
+		};
+		9AF9B7E71B9C769C00016854 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A2069F51B9D138500E886E8 /* WebKit.framework */,
+				9AF9B7E81B9C769C00016854 /* Info.plist */,
+				9AF9B7EC1B9C769C00016854 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9AF9B7FD1B9C769C00016854 /* NSGIF-OSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				9AF9B8001B9C769C00016854 /* NSGIF_OSXTests.m */,
+				9AF9B7FE1B9C769C00016854 /* Supporting Files */,
+			);
+			path = "NSGIF-OSXTests";
+			sourceTree = "<group>";
+		};
+		9AF9B7FE1B9C769C00016854 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AF9B7FF1B9C769C00016854 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +254,41 @@
 			productReference = 9A7C0A4D1B9262A800556C5A /* NSGIFTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9AF9B7E41B9C769C00016854 /* NSGIF-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AF9B8061B9C769C00016854 /* Build configuration list for PBXNativeTarget "NSGIF-OSX" */;
+			buildPhases = (
+				9AF9B7E11B9C769C00016854 /* Sources */,
+				9AF9B7E21B9C769C00016854 /* Frameworks */,
+				9AF9B7E31B9C769C00016854 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NSGIF-OSX";
+			productName = "NSGIF-OSX";
+			productReference = 9AF9B7E51B9C769C00016854 /* NSGIF-OSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9AF9B7F91B9C769C00016854 /* NSGIF-OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AF9B8071B9C769C00016854 /* Build configuration list for PBXNativeTarget "NSGIF-OSXTests" */;
+			buildPhases = (
+				9AF9B7F61B9C769C00016854 /* Sources */,
+				9AF9B7F71B9C769C00016854 /* Frameworks */,
+				9AF9B7F81B9C769C00016854 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AF9B7FC1B9C769C00016854 /* PBXTargetDependency */,
+			);
+			name = "NSGIF-OSXTests";
+			productName = "NSGIF-OSXTests";
+			productReference = 9AF9B7FA1B9C769C00016854 /* NSGIF-OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,6 +304,13 @@
 					9A7C0A4C1B9262A800556C5A = {
 						CreatedOnToolsVersion = 6.4;
 						TestTargetID = 9A7C0A331B9262A800556C5A;
+					};
+					9AF9B7E41B9C769C00016854 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					9AF9B7F91B9C769C00016854 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 9AF9B7E41B9C769C00016854;
 					};
 				};
 			};
@@ -195,6 +329,8 @@
 			targets = (
 				9A7C0A331B9262A800556C5A /* NSGIF */,
 				9A7C0A4C1B9262A800556C5A /* NSGIFTests */,
+				9AF9B7E41B9C769C00016854 /* NSGIF-OSX */,
+				9AF9B7F91B9C769C00016854 /* NSGIF-OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2069F11B9D0AEE00E886E8 /* video.mp4 in Resources */,
 				9A7C0A431B9262A800556C5A /* Main.storyboard in Resources */,
 				9A7C0A481B9262A800556C5A /* LaunchScreen.xib in Resources */,
 				9A7C0A451B9262A800556C5A /* Images.xcassets in Resources */,
@@ -211,6 +348,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9A7C0A4B1B9262A800556C5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AF9B7E31B9C769C00016854 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2069F21B9D0AEE00E886E8 /* video.mp4 in Resources */,
+				9AF9B7F21B9C769C00016854 /* Images.xcassets in Resources */,
+				9AF9B7F51B9C769C00016854 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AF9B7F81B9C769C00016854 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,7 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A7C0A401B9262A800556C5A /* ViewController.m in Sources */,
-				9A7C0A5F1B9262DE00556C5A /* NSGIF.m in Sources */,
+				9AF8884D1B985F5B005E0F14 /* NSGIF.m in Sources */,
 				9A7C0A3D1B9262A800556C5A /* AppDelegate.m in Sources */,
 				9A7C0A3A1B9262A800556C5A /* main.m in Sources */,
 			);
@@ -239,6 +393,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AF9B7E11B9C769C00016854 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AF9B7F01B9C769C00016854 /* ViewController.m in Sources */,
+				9AF9B80A1B9C82C100016854 /* NSGIF.m in Sources */,
+				9AF9B7ED1B9C769C00016854 /* main.m in Sources */,
+				9AF9B7EB1B9C769C00016854 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AF9B7F61B9C769C00016854 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AF9B8011B9C769C00016854 /* NSGIF_OSXTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -246,6 +419,11 @@
 			isa = PBXTargetDependency;
 			target = 9A7C0A331B9262A800556C5A /* NSGIF */;
 			targetProxy = 9A7C0A4E1B9262A800556C5A /* PBXContainerItemProxy */;
+		};
+		9AF9B7FC1B9C769C00016854 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AF9B7E41B9C769C00016854 /* NSGIF-OSX */;
+			targetProxy = 9AF9B7FB1B9C769C00016854 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -264,6 +442,14 @@
 				9A7C0A471B9262A800556C5A /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		9AF9B7F31B9C769C00016854 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AF9B7F41B9C769C00016854 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -405,6 +591,80 @@
 			};
 			name = Release;
 		};
+		9AF9B8021B9C769C00016854 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "NSGIF-OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9AF9B8031B9C769C00016854 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "NSGIF-OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9AF9B8041B9C769C00016854 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "NSGIF-OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSGIF-OSX.app/Contents/MacOS/NSGIF-OSX";
+			};
+			name = Debug;
+		};
+		9AF9B8051B9C769C00016854 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "NSGIF-OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSGIF-OSX.app/Contents/MacOS/NSGIF-OSX";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -431,6 +691,24 @@
 			buildConfigurations = (
 				9A7C0A5B1B9262A800556C5A /* Debug */,
 				9A7C0A5C1B9262A800556C5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AF9B8061B9C769C00016854 /* Build configuration list for PBXNativeTarget "NSGIF-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AF9B8021B9C769C00016854 /* Debug */,
+				9AF9B8031B9C769C00016854 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AF9B8071B9C769C00016854 /* Build configuration list for PBXNativeTarget "NSGIF-OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AF9B8041B9C769C00016854 /* Debug */,
+				9AF9B8051B9C769C00016854 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
