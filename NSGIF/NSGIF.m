@@ -147,12 +147,11 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     generator.requestedTimeToleranceAfter = tol;
     
     NSError *error = nil;
-    double total = 0;
     for (NSValue *time in timePoints) {
         CGImageRef imageRef;
         
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-            imageRef = scaleSize != 1 ? ImageWithScale([generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error], (float)gifSize/10) : [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
+            imageRef = (float)gifSize/10 != 1 ? ImageWithScale([generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error], (float)gifSize/10) : [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
         #elif TARGET_OS_MAC
             imageRef = [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
         #endif
@@ -161,10 +160,6 @@ typedef NS_ENUM(NSInteger, GIFSize) {
             NSLog(@"Error copying image: %@", error);
             return nil;
         }
-        NSLog(@"got here: %.3fs", (float)[time CMTimeValue].value/[time CMTimeValue].timescale);
-        NSLog(@"Bytes: %.2fMB",  (float)(CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef))/1000000);
-        total+=(float)(CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef))/1000000;
-        NSLog(@"Total: %.2fMB\n\n", total);
         
         CGImageDestinationAddImage(destination, imageRef, (CFDictionaryRef)frameProperties);
         CGImageRelease(imageRef);
