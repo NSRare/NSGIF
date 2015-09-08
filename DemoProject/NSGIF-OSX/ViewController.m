@@ -44,7 +44,7 @@
     [openDlg setAllowedFileTypes:fileTypesArray];
     [openDlg setAllowsMultipleSelection:TRUE];
     
-    if ([openDlg runModal] == NSModalResponseOK ) {
+    if ([openDlg runModal] == NSModalResponseOK) {
         NSArray *files = [openDlg URLs];
         for(int i = 0; i < [files count]; i++ ) {
             NSURL *videoURL = [NSURL fileURLWithPath:[[files objectAtIndex:i] path]];
@@ -61,7 +61,6 @@
                 [[self.webView mainFrame] loadRequest:[NSURLRequest requestWithURL:GifURL]];
                 [[[[[self.webView mainFrame] frameView] documentView] superview] scaleUnitSquareToSize:NSMakeSize(.5, .5)];
             }];
-            
         }
     }
 }
