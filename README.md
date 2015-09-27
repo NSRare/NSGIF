@@ -26,7 +26,7 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 ### Podfile
 ```ruby
 platform :ios, '7.0'
-pod "NSGIF", "~> "1.0"
+pod "NSGIF", "~> 1.0"
 ```
 
 ## Practical use
