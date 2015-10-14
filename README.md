@@ -26,13 +26,13 @@ CocoaPods is a dependency manager for Objective-C, which automates and simplifie
 ### Podfile
 ```ruby
 platform :ios, '7.0'
-pod "NSGIF", "~> "1.0"
+pod "NSGIF", "~> 1.0"
 ```
 
 ## Practical use
 ```objective-c
 [NSGIF optimalGIFfromURL:url loopCount:0 completion:^(NSURL *GifURL) {
-NSLog(@"Finished generating GIF: %@", GifURL);
+    NSLog(@"Finished generating GIF: %@", GifURL);
 }];
 ```
 This generates a GIF from the provided video, by automatically setting the best frame count, delay time and size.
@@ -40,7 +40,7 @@ This generates a GIF from the provided video, by automatically setting the best 
 If you want some more flexibility you can use:
 ```objective-c
 [NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 completion:^(NSURL *GifURL) {
-NSLog(@"Finished generating GIF: %@", GifURL);
+    NSLog(@"Finished generating GIF: %@", GifURL);
 }];
 ```
 The library is lightweight and very straight forward. Once you grab the URL of your video, pass it to NSGIF alongside the frame count, delay time and loop count. 
