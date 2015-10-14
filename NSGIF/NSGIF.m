@@ -147,6 +147,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     generator.requestedTimeToleranceAfter = tol;
     
     NSError *error = nil;
+   CGImageRef previousImageRefCopy = nil;
     for (NSValue *time in timePoints) {
         CGImageRef imageRef;
         
@@ -158,12 +159,20 @@ typedef NS_ENUM(NSInteger, GIFSize) {
         
         if (error) {
             NSLog(@"Error copying image: %@", error);
+        }
+        if (imageRef) {
+            CGImageRelease(previousImageRefCopy);
+            previousImageRefCopy = CGImageCreateCopy(imageRef);
+        } else if (previousImageRefCopy) {
+            imageRef = CGImageCreateCopy(previousImageRefCopy);
+        } else {
+            NSLog(@"Error copying image and no previous frames to duplicate");
             return nil;
         }
-        
         CGImageDestinationAddImage(destination, imageRef, (CFDictionaryRef)frameProperties);
         CGImageRelease(imageRef);
     }
+    CGImageRelease(previousImageRefCopy);
     
     CGImageDestinationSetProperties(destination, (CFDictionaryRef)fileProperties);
     // Finalize the GIF
@@ -186,6 +195,9 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
     
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
+    if (!context) {
+        return nil;
+    }
     
     // Set the quality level to use when rescaling
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
