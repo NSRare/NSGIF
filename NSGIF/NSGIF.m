@@ -207,6 +207,8 @@ CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
     // Draw into the context; this scales the image
     CGContextDrawImage(context, newRect, imageRef);
     
+    //Release old image
+    CFRelease(imageRef);
     // Get the resized image from the context and a UIImage
     imageRef = CGBitmapContextCreateImage(context);
     
