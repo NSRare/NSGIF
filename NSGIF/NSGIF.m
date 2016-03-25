@@ -133,10 +133,11 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
     NSURL *fileURL = [NSURL fileURLWithPath:temporaryFile];
-    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)fileURL, kUTTypeGIF , frameCount, NULL);
-    
     if (fileURL == nil)
         return nil;
+
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)fileURL, kUTTypeGIF , frameCount, NULL);
+    
 
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
     AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
@@ -147,12 +148,12 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     generator.requestedTimeToleranceAfter = tol;
     
     NSError *error = nil;
-   CGImageRef previousImageRefCopy = nil;
+    CGImageRef previousImageRefCopy = nil;
     for (NSValue *time in timePoints) {
         CGImageRef imageRef;
         
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-            imageRef = (float)gifSize/10 != 1 ? ImageWithScale([generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error], (float)gifSize/10) : [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
+            imageRef = (float)gifSize/10 != 1 ? createImageWithScale([generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error], (float)gifSize/10) : [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
         #elif TARGET_OS_MAC
             imageRef = [generator copyCGImageAtTime:[time CMTimeValue] actualTime:nil error:&error];
         #endif
@@ -178,6 +179,9 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     // Finalize the GIF
     if (!CGImageDestinationFinalize(destination)) {
         NSLog(@"Failed to finalize GIF destination: %@", error);
+        if (destination != nil) {
+            CFRelease(destination);
+        }
         return nil;
     }
     CFRelease(destination);
@@ -187,7 +191,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 #pragma mark - Helpers
 
-CGImageRef ImageWithScale(CGImageRef imageRef, float scale) {
+CGImageRef createImageWithScale(CGImageRef imageRef, float scale) {
     
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     CGSize newSize = CGSizeMake(CGImageGetWidth(imageRef)*scale, CGImageGetHeight(imageRef)*scale);
