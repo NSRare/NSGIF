@@ -24,7 +24,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 #pragma mark - Public methods
 
 + (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
+    [self optimalGIFfromURL:videoURL toURL:nil loopCount:loopCount completion:completionBlock];
+}
 
++ (void)optimalGIFfromURL:(NSURL *)videoURL toURL:(NSURL *)destFileURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
     float delayTime = 0.02f;
     
     // Create properties dictionaries
@@ -68,9 +71,9 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     __block NSURL *gifURL;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:optimalSize];
-        
+
+        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL toURL:destFileURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:optimalSize];
+
         dispatch_group_leave(gifQueue);
     });
     
@@ -83,6 +86,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 + (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
     
+    [self createGIFfromURL:videoURL toURL:nil withFrameCount:frameCount delayTime:delayTime loopCount:loopCount completion:completionBlock];
+}
+
++ (void)createGIFfromURL:(NSURL*)videoURL toURL:(NSURL *)destFileURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
     // Convert the video at the given URL to a GIF, and return the GIF's URL if it was created.
     // The frames are spaced evenly over the video, and each has the same duration.
     // delayTime is the amount of time for each frame in the GIF.
@@ -114,8 +121,8 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     __block NSURL *gifURL;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:GIFSizeMedium];
+
+        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL toURL:destFileURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:GIFSizeMedium];
 
         dispatch_group_leave(gifQueue);
     });
@@ -129,10 +136,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 #pragma mark - Base methods
 
-+ (NSURL *)createGIFforTimePoints:(NSArray *)timePoints fromURL:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GIFSize)gifSize{
++ (NSURL *)createGIFforTimePoints:(NSArray *)timePoints fromURL:(NSURL *)url toURL:(NSURL *)destFileURL fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GIFSize)gifSize{
     
     NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
-    NSURL *fileURL = [NSURL fileURLWithPath:temporaryFile];
+    NSURL *fileURL = destFileURL ?:[NSURL fileURLWithPath:temporaryFile];
     if (fileURL == nil)
         return nil;
 

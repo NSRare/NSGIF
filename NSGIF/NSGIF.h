@@ -21,6 +21,9 @@
 
 + (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
 
++ (void)optimalGIFfromURL:(NSURL *)videoURL toURL:(NSURL *)destFileURL loopCount:(int)loopCount completion:(void (^)(NSURL *GifURL))completionBlock;
+
 + (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
 
++ (void)createGIFfromURL:(NSURL *)videoURL toURL:(NSURL *)destFileURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void (^)(NSURL *GifURL))completionBlock;
 @end
