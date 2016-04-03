@@ -28,8 +28,10 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 }
 
 + (void)optimalGIFfromURL:(NSURL *)videoURL toURL:(NSURL *)destFileURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
-    float delayTime = 0.02f;
-    
+    [self optimalGIFfromURL:videoURL toURL:nil delayTime:.13f loopCount:loopCount completion:completionBlock];
+}
+
++ (void)optimalGIFfromURL:(NSURL *)videoURL toURL:(NSURL *)destFileURL delayTime:(float)delayTime loopCount:(int)loopCount completion:(void (^)(NSURL *GifURL))completionBlock {
     // Create properties dictionaries
     NSDictionary *fileProperties = [self filePropertiesWithLoopCount:loopCount];
     NSDictionary *frameProperties = [self framePropertiesWithDelayTime:delayTime];
