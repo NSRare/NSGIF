@@ -13,14 +13,6 @@
 #define timeInterval @(600)
 #define tolerance    @(0.01)
 
-typedef NS_ENUM(NSInteger, GIFSize) {
-    GIFSizeVeryLow  = 2,
-    GIFSizeLow      = 3,
-    GIFSizeMedium   = 5,
-    GIFSizeHigh     = 7,
-    GIFSizeOriginal = 10
-};
-
 #pragma mark - Public methods
 
 + (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
@@ -81,7 +73,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 }
 
-+ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
++ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount size:(GIFSize)size completion:(void(^)(NSURL *GifURL))completionBlock {
     
     // Convert the video at the given URL to a GIF, and return the GIF's URL if it was created.
     // The frames are spaced evenly over the video, and each has the same duration.
@@ -89,7 +81,15 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     // loopCount is the number of times the GIF will repeat. Defaults to 0, which means repeat infinitely.
     
     // Create properties dictionaries
-    NSDictionary *fileProperties = [self filePropertiesWithLoopCount:loopCount];
+    NSDictionary *fileProperties;
+    if (loopCount == -1)
+    {
+        fileProperties = @{};
+    }
+    else
+    {
+        fileProperties= [self filePropertiesWithLoopCount:loopCount];
+    }
     NSDictionary *frameProperties = [self framePropertiesWithDelayTime:delayTime];
     
     AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
@@ -115,7 +115,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     __block NSURL *gifURL;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:GIFSizeMedium];
+        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:size];
 
         dispatch_group_leave(gifQueue);
     });
