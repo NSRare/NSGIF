@@ -17,10 +17,18 @@
     #import <WebKit/WebKit.h>
 #endif
 
+typedef NS_ENUM(NSInteger, GIFSize) {
+    GIFSizeVeryLow  = 2,
+    GIFSizeLow      = 3,
+    GIFSizeMedium   = 5,
+    GIFSizeHigh     = 7,
+    GIFSizeOriginal = 10
+};
+
 @interface NSGIF : NSObject
 
 + (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
 
-+ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock;
++ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount size:(GIFSize)size completion:(void(^)(NSURL *GifURL))completionBlock;
 
 @end
