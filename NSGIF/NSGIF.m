@@ -132,7 +132,6 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 + (NSURL *)createGIFforTimePoints:(NSArray *)timePoints fromURL:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GIFSize)gifSize{
     NSString *myUniqueName = [NSString stringWithFormat:@"%@-%lu.gif", fileName, (unsigned long)([[NSDate date] timeIntervalSince1970]*10.0)];
     NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:myUniqueName];
-    NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
     NSURL *fileURL = [NSURL fileURLWithPath:temporaryFile];
     if (fileURL == nil)
         return nil;
