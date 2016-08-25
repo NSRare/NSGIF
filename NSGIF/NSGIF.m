@@ -9,7 +9,7 @@
 @implementation NSGIF
 
 // Declare constants
-#define fileName     @"NSGIF.gif"
+#define fileName     @"NSGIF"
 #define timeInterval @(600)
 #define tolerance    @(0.01)
 
@@ -130,8 +130,9 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 #pragma mark - Base methods
 
 + (NSURL *)createGIFforTimePoints:(NSArray *)timePoints fromURL:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GIFSize)gifSize{
-    
-    NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:fileName];
+	
+	NSString *timeEncodedFileName = [NSString stringWithFormat:@"%@-%lu.gif", fileName, (unsigned long)([[NSDate date] timeIntervalSince1970]*10.0)];
+    NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:timeEncodedFileName];
     NSURL *fileURL = [NSURL fileURLWithPath:temporaryFile];
     if (fileURL == nil)
         return nil;

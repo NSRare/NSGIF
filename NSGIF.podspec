@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NSGIF"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "iOS Library for converting your videos into beautiful animated GIFs."
   s.homepage     = "https://github.com/sebyddd/NSGIF"
   s.screenshots  = "https://dl.dropboxusercontent.com/s/0rq3fr0dtpvwd4h/NSGIF-header.png?dl=0"
