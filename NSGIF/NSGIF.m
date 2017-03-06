@@ -138,7 +138,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
         return nil;
 
     CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)fileURL, kUTTypeGIF , frameCount, NULL);
-    
+    CGImageDestinationSetProperties(destination, (CFDictionaryRef)fileProperties);
 
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
     AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
@@ -176,7 +176,6 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     }
     CGImageRelease(previousImageRefCopy);
     
-    CGImageDestinationSetProperties(destination, (CFDictionaryRef)fileProperties);
     // Finalize the GIF
     if (!CGImageDestinationFinalize(destination)) {
         NSLog(@"Failed to finalize GIF destination: %@", error);
