@@ -17,7 +17,7 @@ There are 2 ways you can add NSGIF to your project:
 
 Simply import the 'NSGIF' into your project then import the following in the class you want to use it: 
 ```objective-c
-#import "NSGIF.h"
+# import "NSGIF.h"
 ```      
 ### Installation with CocoaPods
 
