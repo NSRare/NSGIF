@@ -31,7 +31,9 @@ pod "NSGIF", "~> 1.0"
 
 ## Practical use
 ```objective-c
-[NSGIF optimalGIFfromURL:url loopCount:0 completion:^(NSURL *GifURL) {
+[NSGIF optimalGIFfromURL:url loopCount:0 progress:^(CGFloat progress) {
+NSLog(@"Progress generating GIF: %.2f", progress);
+}] completion:^(NSURL *GifURL) {
     NSLog(@"Finished generating GIF: %@", GifURL);
 }];
 ```
@@ -39,7 +41,9 @@ This generates a GIF from the provided video, by automatically setting the best 
 
 If you want some more flexibility you can use:
 ```objective-c
-[NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 completion:^(NSURL *GifURL) {
+[NSGIF createGIFfromURL:url withFrameCount:30 delayTime:.010 loopCount:0 progress:^(CGFloat progress) {
+NSLog(@"Progress generating GIF: %.2f", progress);
+}] completion:^(NSURL *GifURL) {
     NSLog(@"Finished generating GIF: %@", GifURL);
 }];
 ```
@@ -51,12 +55,6 @@ delayTime  -  is the amount of time for each frame in the GIF.
 loopCount  - is the number of times the GIF will repeat. Defaults to 0, which means repeat infinitely.
 ```
 I recommend you to play with those values and find the best ones for your video.
-
-## Demo
-
-Check out the demo project for a quick example of how NSGIF works. After you capture your video, this is what you have to do, to retrieve the GIF:
-
-![NSGIF](https://dl.dropboxusercontent.com/s/p02c6l7rzk6mf6m/NSGIF-HT.gif?dl=0)
 
 ## Todo
 - [X] Add MacOS Demo

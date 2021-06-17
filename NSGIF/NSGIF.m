@@ -23,8 +23,12 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 #pragma mark - Public methods
 
-+ (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
+static BOOL isCancel = NO;
 
++ (void)optimalGIFfromURL:(NSURL*)videoURL loopCount:(int)loopCount progress:(void(^)(CGFloat progress))progressBlock completion:(void(^)(NSURL *GifURL))completionBlock {
+
+    isCancel = NO;
+    
     float delayTime = 0.02f;
     
     // Create properties dictionaries
@@ -69,7 +73,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     __block NSURL *gifURL;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:optimalSize];
+        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:optimalSize progress:progressBlock ];
         
         dispatch_group_leave(gifQueue);
     });
@@ -81,7 +85,9 @@ typedef NS_ENUM(NSInteger, GIFSize) {
 
 }
 
-+ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount completion:(void(^)(NSURL *GifURL))completionBlock {
++ (void)createGIFfromURL:(NSURL*)videoURL withFrameCount:(int)frameCount delayTime:(float)delayTime loopCount:(int)loopCount progress:(void(^)(CGFloat progress))progressBlock completion:(void(^)(NSURL *GifURL))completionBlock {
+    
+    isCancel = NO;
     
     // Convert the video at the given URL to a GIF, and return the GIF's URL if it was created.
     // The frames are spaced evenly over the video, and each has the same duration.
@@ -115,7 +121,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     __block NSURL *gifURL;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:GIFSizeMedium];
+        gifURL = [self createGIFforTimePoints:timePoints fromURL:videoURL fileProperties:fileProperties frameProperties:frameProperties frameCount:frameCount gifSize:GIFSizeMedium progress:progressBlock ];
 
         dispatch_group_leave(gifQueue);
     });
@@ -127,13 +133,84 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
 }
 
++ (void)createGIFfromImages:(NSArray *)imagesArray withDelayTime:(float)delayTime loopCount:(int)loopCount progress:(void (^)(CGFloat))progressBlock completion:(void (^)(NSURL *))completionBlock {
+    // Prepare group for firing completion block
+    
+    NSMutableArray *scaledPhotos = [NSMutableArray arrayWithCapacity:imagesArray.count];
+    for (UIImage *image in imagesArray) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.width*(375/390.0))];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.image = image;
+        
+        CGFloat scale = [UIScreen mainScreen].scale;
+        UIGraphicsBeginImageContextWithOptions(imageView.frame.size, NO, scale);
+        [imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        [scaledPhotos addObject:image];
+    }
+    
+    dispatch_group_t gifQueue = dispatch_group_create();
+    dispatch_group_enter(gifQueue);
+    
+    __block NSURL *gifURL;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *timeEncodedFileName = [NSString stringWithFormat:@"%@-%lu.gif", fileName, (unsigned long)([[NSDate date] timeIntervalSince1970]*10.0)];
+        NSURL *fileURL = [[[[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil] URLByAppendingPathComponent:@"Gif"] URLByAppendingPathComponent:timeEncodedFileName];
+        CFURLRef cfurl = CFBridgingRetain(fileURL);
+        CGImageDestinationRef imageDestination = CGImageDestinationCreateWithURL(cfurl, kUTTypeGIF, scaledPhotos.count, nil);
+        CFRelease(cfurl);
+        if (imageDestination) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:4];
+            [dict setObject:[NSNumber numberWithBool:YES] forKey:(NSString*)kCGImagePropertyGIFHasGlobalColorMap];
+            [dict setObject:(NSString *)kCGImagePropertyColorModelRGB forKey:(NSString *)kCGImagePropertyColorModel];
+            [dict setObject:[NSNumber numberWithFloat:16] forKey:(NSString*)kCGImagePropertyDepth];
+            [dict setObject:[NSNumber numberWithInt:loopCount] forKey:(NSString *)kCGImagePropertyGIFLoopCount];
+            NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:dict forKey:(NSString *)kCGImagePropertyGIFDictionary];
+            //设置gif的信息,播放间隔时间,基本数据,和delay时间
+            NSDictionary *frameProperties = [NSDictionary dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:delayTime], (NSString *)kCGImagePropertyGIFDelayTime, nil] forKey:(NSString *)kCGImagePropertyGIFDictionary];
+
+            //合成gif
+            for (int i = 0; i < scaledPhotos.count; i++) {
+                if (isCancel) {
+                    return;
+                }
+                UIImage* img = scaledPhotos[i];
+                CGImageDestinationAddImage(imageDestination, img.CGImage, (__bridge CFDictionaryRef)frameProperties);
+                
+                CGFloat progress = i/(CGFloat)scaledPhotos.count;
+                progressBlock(progress);
+            }
+
+            CGImageDestinationSetProperties(imageDestination, (__bridge CFDictionaryRef)gifProperties);
+            if (!CGImageDestinationFinalize(imageDestination)) {
+                NSLog(@"failed to finalize image destination");
+            } else {
+                CFRelease(imageDestination);
+                gifURL = fileURL;
+            }
+        }
+
+        dispatch_group_leave(gifQueue);
+    });
+    
+    dispatch_group_notify(gifQueue, dispatch_get_main_queue(), ^{
+        // Return GIF URL
+        completionBlock(gifURL);
+    });
+}
+
++ (void)cancel {
+    isCancel = YES;
+}
+
 #pragma mark - Base methods
 
-+ (NSURL *)createGIFforTimePoints:(NSArray *)timePoints fromURL:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GIFSize)gifSize{
++ (NSURL *)createGIFforTimePoints:(NSArray *)timePoints fromURL:(NSURL *)url fileProperties:(NSDictionary *)fileProperties frameProperties:(NSDictionary *)frameProperties frameCount:(int)frameCount gifSize:(GIFSize)gifSize progress:(void(^)(CGFloat progress))progressBlock {
 	
 	NSString *timeEncodedFileName = [NSString stringWithFormat:@"%@-%lu.gif", fileName, (unsigned long)([[NSDate date] timeIntervalSince1970]*10.0)];
-    NSString *temporaryFile = [NSTemporaryDirectory() stringByAppendingString:timeEncodedFileName];
-    NSURL *fileURL = [NSURL fileURLWithPath:temporaryFile];
+    NSURL *fileURL = [[[[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil] URLByAppendingPathComponent:@"Gif"] URLByAppendingPathComponent:timeEncodedFileName];
     if (fileURL == nil)
         return nil;
 
@@ -150,7 +227,12 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     NSError *error = nil;
     CGImageRef previousImageRefCopy = nil;
-    for (NSValue *time in timePoints) {
+    for (int i = 0; i< timePoints.count; i++) {
+        if (isCancel) {
+            return nil;
+        }
+        NSValue *time = timePoints[i];
+        
         CGImageRef imageRef;
         
         #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
@@ -173,6 +255,9 @@ typedef NS_ENUM(NSInteger, GIFSize) {
         }
         CGImageDestinationAddImage(destination, imageRef, (CFDictionaryRef)frameProperties);
         CGImageRelease(imageRef);
+        
+        CGFloat progress = i/(CGFloat)timePoints.count;
+        progressBlock(progress);
     }
     CGImageRelease(previousImageRefCopy);
     
