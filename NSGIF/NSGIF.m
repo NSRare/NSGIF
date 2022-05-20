@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, GIFSize) {
     
     // Get the length of the video in seconds
     float videoLength = (float)asset.duration.value/asset.duration.timescale;
-    int framesPerSecond = 4;
+    int framesPerSecond = 30;
     int frameCount = videoLength*framesPerSecond;
     
     // How far along the video track we want to move, in seconds.
